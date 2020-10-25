@@ -60,7 +60,7 @@ const LoginRoute = async (server : any, opts : any, next: () => void) => {
                 return res.status(401).send(BAD_PASSWORD_ERROR)
             }
 
-            const token = server.jwt.sign({ userId: account.id, name: account.name, isAdmin: false })
+            const token = server.jwt.sign({payload: { userId: account.id, name: account.name, isAdmin: false }})
             return res.send({token})
         },
     })

@@ -12,7 +12,7 @@ const VehiclesRoute = async (server : any, opts : any, next: () => void) => {
     server.route({
         method: 'GET',
         url: '/vehicles',
-        // preHandler: server.auth([server.authenticateAccount]),
+        preHandler: server.auth([server.authenticateAccount]),
         schema: {
             response: {
                 200: {

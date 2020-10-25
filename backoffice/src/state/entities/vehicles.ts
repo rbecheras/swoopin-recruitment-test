@@ -97,7 +97,7 @@ export default class StateVehicles {
             this.api({
                 method: 'post',
                 url: `/vehicles/online/${id}`,
-                headers: { Authorization: `Bearer ${session.token}` },
+                headers: { Authorization: `Bearer ${this.session.token}` },
             })
         } catch (err) {
             console.error(err)
@@ -110,7 +110,7 @@ export default class StateVehicles {
             this.api({
                 method: 'post',
                 url: `/vehicles/offline/${id}`,
-                headers: { Authorization: `Bearer ${session.token}` },
+                headers: { Authorization: `Bearer ${this.session.token}` },
             })
         } catch (err) {
             console.error(err)

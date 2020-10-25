@@ -14,7 +14,7 @@ const SetVehicleOnlineRoute = async (server : any, opts : any, next: () => void)
     server.route({
         method: 'POST',
         url: '/vehicles/online/:vehicleId',
-        // preHandler: server.auth([server.authenticateAccount]),
+        preHandler: server.auth([server.authenticateAccount]),
         schema: {
             params: {
                 vehicleId: {type: 'string'}
