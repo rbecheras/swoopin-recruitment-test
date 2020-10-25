@@ -2,6 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 
 import { classNamesPrefix } from 'utils/react'
+import cx from 'classnames'
 
 import './vehicle.scss'
 
@@ -14,14 +15,15 @@ type DriverProps = {
     plate: string,
     speed: number,
     temperature: number,
-    onClick: (e: any) => void,
+    online: boolean,
+    onClick: () => void,
 }
 
-const Vehicle = observer(({ id, name, vehicle, plate, speed, temperature, onClick }
+const Vehicle = observer(({ id, name, vehicle, plate, speed, temperature, online, onClick }
     : DriverProps) => {
 
     return (
-        <div className={block} onClick={() => onClick()}>
+        <div className={cx(block, {'driver__online': online})} onClick={() => onClick()}>
             <div>
                 <div>
                     {name}

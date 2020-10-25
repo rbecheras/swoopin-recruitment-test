@@ -147,6 +147,7 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                                 plate={vehicle.plate}
                                 speed={vehicle.speed}
                                 temperature={vehicle.temperature}
+                                online={vehicle.online}
                             />
                         )}
                     </div>
