@@ -12,6 +12,9 @@ type Vehicle = {
     vehicle: string,
     location: number[],
     online: boolean,
+    plate: string,
+    speed: number,
+    temperature: number,
 }
 
 const vehicleTypes: any = {
