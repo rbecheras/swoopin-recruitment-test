@@ -2,7 +2,7 @@ import Logger from '@harmonyjs/logger'
 import VehicleService from '../../../services/vehicle'
 
 const logger = Logger({
-    name: 'SetVehicleOnlineAPI',
+    name: 'GetVehiclesAPI',
     configuration: {
         console: true,
     },
@@ -10,10 +10,10 @@ const logger = Logger({
 
 const INTERNALE_ERROR = { statusCode: 500, error: 'Internal Server Error' }
 
-const SetVehicleOnlineRoute = async (server : any, opts : any, next: () => void) => {
+const SetVehicleOfflineRoute = async (server : any, opts : any, next: () => void) => {
     server.route({
         method: 'POST',
-        url: '/vehicles/online/:vehicleId',
+        url: '/vehicles/offline/:vehicleId',
         // preHandler: server.auth([server.authenticateAccount]),
         schema: {
             params: {
@@ -36,7 +36,7 @@ const SetVehicleOnlineRoute = async (server : any, opts : any, next: () => void)
         async handler(req: any, res: any) {
             const {vehicleId} = req.params
             try {
-                VehicleService.setOnlineState(vehicleId, true)
+                VehicleService.setOnlineState(vehicleId, false)
             } catch (err) {
                 throw INTERNALE_ERROR
             }
@@ -46,4 +46,4 @@ const SetVehicleOnlineRoute = async (server : any, opts : any, next: () => void)
     next()
 }
 
-export default SetVehicleOnlineRoute
+export default SetVehicleOfflineRoute

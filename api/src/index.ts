@@ -15,7 +15,8 @@ import ReadinessRoute from 'routes/readiness'
 import GeneralStatusRoute from 'routes/general/status'
 import GeneralVersionRoute from 'routes/general/version'
 import VehiclesRoute from 'routes/vehicles/vehicles'
-import VehiclesByIdRoute from 'routes/vehicles/online/vehicle'
+import SetVehicleOnlineRoute from 'routes/vehicles/online/vehicle'
+import SetVehicleOfflineRoute from 'routes/vehicles/offline/vehicle'
 
 import LoginRoute from 'routes/login'
 
@@ -70,7 +71,8 @@ async function launchServer(conf : any, logger : ILogger) {
     // Endpoints
     server.register(LoginRoute)
     server.register(VehiclesRoute)
-    server.register(VehiclesByIdRoute)
+    server.register(SetVehicleOnlineRoute)
+    server.register(SetVehicleOfflineRoute)
 
     // Add conf
     server.decorateRequest('conf', conf)

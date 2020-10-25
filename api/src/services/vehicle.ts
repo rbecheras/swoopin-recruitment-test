@@ -79,11 +79,12 @@ function VehicleService() {
             return this.vehicles
         },
         
-        setVehicleOnline(vehicleId: string): void {
+        setOnlineState(vehicleId: string, onlineState: boolean): void {
             const vehicle = this.vehicles.find(v => v.id === vehicleId)
             if (!vehicle) throw new Error('Vehicle not found')
-            vehicle.online = true;
-        }
+            vehicle.online = onlineState;
+        },
+        
     })
 
     return instance

@@ -102,6 +102,19 @@ export default class StateVehicles {
         }
     }
 
+    @action.bound async setOffline(id: string, session: any) {
+        try {
+            this.api({
+                method: 'post',
+                url: `/vehicles/offline/${id}`,
+                headers: { Authorization: `Bearer ${session.token}` },
+            })
+        } catch (err) {
+            console.error(err)
+            console.error(err.message)
+        }
+    }
+
     @computed get all() : Vehicle[] {
         return this.list
     }
