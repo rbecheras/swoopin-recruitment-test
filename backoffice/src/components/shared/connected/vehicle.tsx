@@ -25,7 +25,7 @@ type DriverProps = {
     temperature: number,
 }
 
-const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperature }
+const Vehicle = observer(({ id, name, vehicle, plate, location, online, speed, temperature }
     : DriverProps) => {
 
     return (
@@ -42,7 +42,7 @@ const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperat
                         {name}
                     </div>
                     <div className={cx('__vehicle-description')}>
-                        {vehicle}
+                        {vehicle} ({plate})
                     </div>
                 </div>
             </div>
