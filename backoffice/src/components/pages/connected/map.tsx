@@ -10,6 +10,7 @@ import { useLayoutConfig, useCallback } from 'hooks'
 
 import SEO from 'components/layout/seo'
 import { IconMap } from 'components/shared/icons'
+import {Vehicle} from '../../shared/map'
 
 import './map.scss'
 
@@ -111,7 +112,16 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                 <div className={cx('__sidebar')}>
                     <h2 className={cx('__title')}>Véhicules</h2>
                     <div className={cx('__list')}>
-                        {/* FIXME */ }
+                        {state.vehicles.all.map(vehicle => 
+                            <Vehicle
+                                id={vehicle.id}
+                                name={vehicle.name}
+                                vehicle={vehicle.vehicle}
+                                plate={vehicle.plate}
+                                speed={vehicle.speed}
+                                temperature={vehicle.temperature}
+                             ></Vehicle>
+                        )}
                     </div>
                 </div>
 
