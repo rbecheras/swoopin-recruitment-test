@@ -14,6 +14,7 @@ import VehicleService from 'services/vehicle'
 import ReadinessRoute from 'routes/readiness'
 import GeneralStatusRoute from 'routes/general/status'
 import GeneralVersionRoute from 'routes/general/version'
+import VehiclesRoute from 'routes/vehicles'
 
 import LoginRoute from 'routes/login'
 
@@ -64,9 +65,10 @@ async function launchServer(conf : any, logger : ILogger) {
     // Mount general endpoints
     server.route(GeneralStatusRoute)
     server.route(GeneralVersionRoute)
-
+    
     // Endpoints
     server.register(LoginRoute)
+    server.register(VehiclesRoute)
 
     // Add conf
     server.decorateRequest('conf', conf)

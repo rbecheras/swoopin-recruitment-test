@@ -70,7 +70,6 @@ export default class StateSession {
                 method: 'post',
                 data: { email: login, password }
             })
-            console.log(res)
             this.updateToken(res.data.token)
         } catch (err) {
             throw {
