@@ -41,6 +41,16 @@ const PageDrivers = observer(({ location } : { location: any }) => {
         setPopup({ ...popup, show: true })
     }, [])
 
+    const onListVehicleClick = useCallback((location: number[]) => {
+        mapRef.map?.flyTo({
+            center: [location[1], location[0]],
+            essential: true,
+            zoom: 13,
+            speed: 0.5,
+            curve: 1,
+        });
+    }, [])
+
     return (
         <section id="page-map" className={block}>
             <SEO title='Carte' />
@@ -73,7 +83,7 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                         {state.vehicles.online.map(vehicle => (
                             <Feature
                                 key={vehicle.id}
-                                coordinates={vehicle.location.reverse()}
+                                coordinates={vehicle.location.slice().reverse()}
                                 onMouseEnter={() => mapRef.map.getCanvas().style.cursor = 'pointer'}
                                 onMouseLeave={() => mapRef.map.getCanvas().style.cursor = ''}
                                 onClick={(e) => onMapVehicleClick(e, vehicle.id)}
@@ -94,7 +104,7 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                         {state.vehicles.offline.map(vehicle => (
                             <Feature
                                 key={vehicle.id}
-                                coordinates={vehicle.location.reverse()}
+                                coordinates={vehicle.location.slice().reverse()}
                                 onMouseEnter={() => mapRef.map.getCanvas().style.cursor = 'pointer'}
                                 onMouseLeave={() => mapRef.map.getCanvas().style.cursor = ''}
                                 onClick={(e) => onMapVehicleClick(e, vehicle.id)}
@@ -130,13 +140,14 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                     <div className={cx('__list')}>
                         {state.vehicles.all.map(vehicle => 
                             <Vehicle
+                                onClick={() => onListVehicleClick(vehicle.location)}
                                 id={vehicle.id}
                                 name={vehicle.name}
                                 vehicle={vehicle.vehicle}
                                 plate={vehicle.plate}
                                 speed={vehicle.speed}
                                 temperature={vehicle.temperature}
-                             ></Vehicle>
+                            />
                         )}
                     </div>
                 </div>

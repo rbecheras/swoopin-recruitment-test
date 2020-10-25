@@ -14,13 +14,14 @@ type DriverProps = {
     plate: string,
     speed: number,
     temperature: number,
+    onClick: (e: any) => void,
 }
 
-const Vehicle = observer(({ id, name, vehicle, plate, speed, temperature }
+const Vehicle = observer(({ id, name, vehicle, plate, speed, temperature, onClick }
     : DriverProps) => {
 
     return (
-        <div className={block}>
+        <div className={block} onClick={() => onClick()}>
             <div>
                 <div>
                     {name}
