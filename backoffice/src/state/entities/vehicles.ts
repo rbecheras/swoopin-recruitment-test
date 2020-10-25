@@ -126,6 +126,10 @@ export default class StateVehicles {
         return this.list.filter((vehicle: any) => vehicle.online)
     }
 
+    @computed get offline() : Vehicle[] {
+        return this.list.filter((vehicle: any) => !vehicle.online)
+    }
+
     @computed get selectedVehicle() : Vehicle | null {
         if (this.selectedVehicleId) {
             const vehicle = this.list.find((vehicle: any) => vehicle.id === this.selectedVehicleId)
