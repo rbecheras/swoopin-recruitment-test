@@ -7,7 +7,7 @@ import state from 'state'
 
 import { useCallback } from 'hooks'
 
-import { IconTruck, IconLocation } from 'components/shared/icons'
+import { IconTruck, IconLocation, IconSpeed, IconTemperature } from 'components/shared/icons'
 
 import './vehicle.scss'
 import { Button } from '../inputs'
@@ -21,9 +21,11 @@ type DriverProps = {
     vehicle: string,
     location: number[],
     online: boolean,
+    speed: number,
+    temperature: number,
 }
 
-const Vehicle = observer(({ id, name, vehicle, location, online }
+const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperature }
     : DriverProps) => {
 
     return (
@@ -53,6 +55,24 @@ const Vehicle = observer(({ id, name, vehicle, location, online }
                         {parseFloat(location[0].toFixed(3))}
                         {', '}
                         {parseFloat(location[1].toFixed(3))}
+                    </div>
+                </div>
+            </div>
+
+            <div className={cx('__group', '__speed', { '__speed--hidden': !speed })}>
+                <IconSpeed className={cx('__icon', 'speed-icon')} />
+                <div className={cx('__column', '__speed-info')}>
+                    <div className={cx('__speed-theme')}>
+                        {speed}
+                    </div>
+                </div>
+            </div>
+
+            <div className={cx('__group', '__temperature', { '__temperature--hidden': !temperature })}>
+                <IconTemperature className={cx('__icon', '__temperature-icon')} />
+                <div className={cx('__column', '__temperature-info')}>
+                    <div className={cx('__temperature-theme')}>
+                        {temperature}
                     </div>
                 </div>
             </div>
