@@ -68,6 +68,7 @@ export default class StateVehicles {
     }
 
     @action.bound async updateVehicles(session: any) {
+        if (!this.api) throw new Error('API is not ready')
         const {data: vehicles} = await this.api({
             url: 'vehicles',
             method: 'get',
@@ -93,6 +94,7 @@ export default class StateVehicles {
     }
 
     @action.bound async setOnline(id: string, session: any) {
+        if (!this.api) throw new Error('API is not ready')
         try {
             this.api({
                 method: 'post',
@@ -106,6 +108,7 @@ export default class StateVehicles {
     }
 
     @action.bound async setOffline(id: string, session: any) {
+        if (!this.api) throw new Error('API is not ready')
         try {
             this.api({
                 method: 'post',
