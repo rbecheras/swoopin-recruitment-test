@@ -10,7 +10,6 @@
   padding: 0;
   padding-top: 0.5rem;
   width: 100%;
-  color: red;
 
   &__group {
     display: flex;
@@ -19,6 +18,10 @@
     justify-content: flex-start;
   }
 
+  &__offline {
+    color: red;
+  }
+  
   &__online {
     color: green;
   }

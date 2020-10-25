@@ -23,7 +23,7 @@ const Vehicle = observer(({ id, name, vehicle, plate, speed, temperature, online
     : DriverProps) => {
 
     return (
-        <div className={cx(block, {'driver__online': online})} onClick={() => onClick()}>
+        <div className={cx(block, {'driver__online': online}, {'driver__offline': !online})} onClick={() => onClick()}>
             <div>
                 <div>
                     {name}
