@@ -89,6 +89,19 @@ export default class StateVehicles {
         this.selectedVehicleId = id
     }
 
+    @action.bound async setOnline(id: string, session: any) {
+        try {
+            this.api({
+                method: 'post',
+                url: `/vehicles/online/${id}`,
+                headers: { Authorization: `Bearer ${session.token}` },
+            })
+        } catch (err) {
+            console.error(err)
+            console.error(err.message)
+        }
+    }
+
     @computed get all() : Vehicle[] {
         return this.list
     }

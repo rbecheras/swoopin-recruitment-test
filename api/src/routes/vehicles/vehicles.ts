@@ -1,5 +1,5 @@
 import Logger from '@harmonyjs/logger'
-import VehicleService from '../services/vehicle'
+import VehicleService from '../../services/vehicle'
 
 const logger = Logger({
     name: 'GetVehiclesAPI',
@@ -8,7 +8,7 @@ const logger = Logger({
     },
 })
 
-const LoginRoute = async (server : any, opts : any, next: () => void) => {
+const VehiclesRoute = async (server : any, opts : any, next: () => void) => {
     server.route({
         method: 'GET',
         url: '/vehicles',
@@ -23,10 +23,10 @@ const LoginRoute = async (server : any, opts : any, next: () => void) => {
                             id: {type: 'string'},
                             name: {type: 'string'},
                             vehicle: {type: 'string'},
-                            speed: {type: 'string'},
-                            temperature: {type: 'string'},
+                            speed: {type: 'number'},
+                            temperature: {type: 'number'},
                             plate: {type: 'string'},
-                            online: {type: 'string'},
+                            online: {type: 'boolean'},
                             location: {
                                 type: 'array',
                                 items: {
@@ -45,4 +45,4 @@ const LoginRoute = async (server : any, opts : any, next: () => void) => {
     next()
 }
 
-export default LoginRoute
+export default VehiclesRoute

@@ -78,6 +78,12 @@ function VehicleService() {
         getDrivers() : any[] {
             return this.vehicles
         },
+        
+        setVehicleOnline(vehicleId: string): void {
+            const vehicle = this.vehicles.find(v => v.id === vehicleId)
+            if (!vehicle) throw new Error('Vehicle not found')
+            vehicle.online = true;
+        }
     })
 
     return instance

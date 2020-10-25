@@ -10,6 +10,7 @@ import { useCallback } from 'hooks'
 import { IconTruck, IconLocation } from 'components/shared/icons'
 
 import './vehicle.scss'
+import { Button } from '../inputs'
 
 const block = 'driver'
 const cx = classNamesPrefix(block)
@@ -58,7 +59,9 @@ const Vehicle = observer(({ id, name, vehicle, location, online }
 
             { /* Buttons ([Online|Offline]) */ }
             <div className={cx('__group', '__buttons')}>
-                { /* FIXME */ }
+                <Button onClick={() => state.vehicles.setOnline(id, state)}>
+                    Connecter
+                </Button>
             </div>
 
         </div>
