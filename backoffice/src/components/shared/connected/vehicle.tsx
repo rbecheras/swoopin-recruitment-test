@@ -6,6 +6,7 @@ import { classNamesPrefix } from 'utils/react'
 import state from 'state'
 
 import { useCallback } from 'hooks'
+import moment from 'moment'
 
 import { IconTruck, IconLocation, IconSpeed, IconTemperature } from 'components/shared/icons'
 
@@ -19,13 +20,15 @@ type DriverProps = {
     id: string,
     name: string,
     vehicle: string,
+    plate: string,
     location: number[],
     online: boolean,
     speed: number,
     temperature: number,
+    updatedAt: string,
 }
 
-const Vehicle = observer(({ id, name, vehicle, plate, location, online, speed, temperature }
+const Vehicle = observer(({ id, name, vehicle, plate, location, online, speed, temperature, updatedAt }
     : DriverProps) => {
 
     return (
@@ -43,6 +46,9 @@ const Vehicle = observer(({ id, name, vehicle, plate, location, online, speed, t
                     </div>
                     <div className={cx('__vehicle-description')}>
                         {vehicle} ({plate})
+                    </div>
+                    <div className={cx('__vehicle-update')}>
+                        {moment(updatedAt).format('DD/MM/YYYY-HH:mm:ss')}
                     </div>
                 </div>
             </div>

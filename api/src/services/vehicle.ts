@@ -69,6 +69,8 @@ function VehicleService() {
                     const minTemp = vehicle.defaultTemperature - TEMPERATURE_VARIATION
                     const maxTemp = vehicle.defaultTemperature + TEMPERATURE_VARIATION
                     vehicle.temperature = Math.floor(Math.random() * (maxTemp - minTemp + 1) + minTemp)
+
+                    vehicle.updatedAt = moment().toISOString()
                 } else {
                     vehicle.speed = 0
                 }
