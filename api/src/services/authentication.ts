@@ -11,29 +11,11 @@ function AuthenticationService() {
             this.account = account
         },
 
-        async authenticateAccount(args: {req: any, res: any, done: (error?: Error) => void }) {
-
+        async authenticateAccount(args: {req: any, res: any, done: (err: any) => void}) {
+            let decoded
             try {
                 // Decode JSON
-                const decoded = await args.req.jwtVerify()
-        
-                if (!decoded?.payload?.userId) 
-                    return args.res.code(500).send({
-                        statusCode: 500,
-                        error: 'Internal Server Error',
-                        message: 'No userId found in token payload',
-                    })
-        
-                // Verify account is present
-                if (this.account && (decoded.payload.userId !== this.account!.id))
-                    return args.res.code(500).send({
-                        statusCode: 500,
-                        error: 'Internal Server Error',
-                        message: 'No userId found in token payload',
-                    })
-        
-                const user = this.account
-                return Object.assign(args.req, { user })
+                decoded = await args.req.jwtVerify()
             } catch (e) {
                 return args.res.code(401).send({
                     statusCode: 401,
@@ -41,6 +23,25 @@ function AuthenticationService() {
                     message: e.message,
                 })
             }
+
+            // Verify payload
+            if (!decoded?.payload?.userId)
+                return args.res.code(500).send({
+                    statusCode: 500,
+                    error: 'Internal Server Error',
+                    message: 'No userId found in token payload',
+                })
+
+            // Verify account matching
+            if (decoded.payload.userId !== this.account.id)
+                return args.res.code(500).send({
+                    statusCode: 500,
+                    error: 'Internal Server Error',
+                    message: 'Token doesnt match with a valid account',
+                })
+
+            const user = this.account
+            return Object.assign(args.req, { user })
         },
     })
 
